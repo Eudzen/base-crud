@@ -2,6 +2,7 @@ package com.example.crud.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.*;
 
 @Entity
 @Getter
@@ -9,6 +10,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 @Table(name = "food_types", indexes = @Index(name = "type_name", columnList = "name"))
 public class FoodType {
 

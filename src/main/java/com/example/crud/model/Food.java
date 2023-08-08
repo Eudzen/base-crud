@@ -4,6 +4,7 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.*;
 import org.hibernate.annotations.*;
 
 @Entity
@@ -12,6 +13,7 @@ import org.hibernate.annotations.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 @Where(clause = "is_deleted=false")
 @SQLDelete(sql = "update food set is_deleted = true where id=?")
 @Table(name = "food", indexes = @Index(name = "food_type", columnList = "type_id"))
