@@ -22,12 +22,12 @@ public class Food {
     @Column(nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id")
     @ToString.Exclude
+    @JoinColumn(name = "type_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private FoodType type;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @Column(scale = 2)
