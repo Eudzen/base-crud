@@ -11,8 +11,8 @@ public interface FoodRepo extends JpaRepository<Food, Long> {
     boolean existsByName(String name);
 
     @Modifying
-    @Query("update Food set isDeleted = true, FoodType = null " +
-           "where FoodType = :type")
+    @Query("update Food set isDeleted = true, type = null " +
+           "where type = :type")
     void deleteAllByType(@Param("type") FoodType type);
 
 }
