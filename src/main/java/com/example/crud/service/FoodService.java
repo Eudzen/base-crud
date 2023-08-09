@@ -5,12 +5,16 @@ import org.springframework.data.domain.*;
 
 public interface FoodService {
 
-    Long add(Food food);
+    Long create(Food food);
 
     Food getById(Long id);
 
     Page<Food> getPage(Pageable pageable);
 
+    void update(Food food);
+
     String delete(Long id);
+
+    void deleteAllByType(FoodType type);
 
 }
