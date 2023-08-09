@@ -1,8 +1,9 @@
-package com.example.crud.service;
+package com.example.crud.service.impl;
 
 import com.example.crud.exception.*;
 import com.example.crud.model.*;
 import com.example.crud.repository.*;
+import com.example.crud.service.*;
 import com.example.crud.utils.*;
 import lombok.*;
 import org.springframework.data.domain.*;
@@ -37,10 +38,11 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public void update(Food food) {
+    public String update(Food food) {
         getById(food.getId());
 
         foodRepo.save(food);
+        return String.format("Продукт с id=%d успешно отредактирован", food.getId());
     }
 
     @Override

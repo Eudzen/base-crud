@@ -11,7 +11,7 @@ public interface FoodTypeService {
 
     Page<FoodType> getPage(Pageable pageable);
 
-    void update (FoodType type);
+    String update (FoodType type);
 
     String delete(Long id);
 

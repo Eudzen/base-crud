@@ -1,8 +1,9 @@
-package com.example.crud.service;
+package com.example.crud.service.impl;
 
 import com.example.crud.exception.*;
 import com.example.crud.model.*;
 import com.example.crud.repository.*;
+import com.example.crud.service.*;
 import com.example.crud.utils.*;
 import lombok.*;
 import org.springframework.data.domain.*;
@@ -40,10 +41,11 @@ public class FoodTypeServiceImpl implements FoodTypeService {
     }
 
     @Override
-    public void update(FoodType type) {
+    public String update(FoodType type) {
         getById(type.getId());
 
         foodTypeRepo.save(type);
+        return String.format("Продукт с id=%d успешно отредактирован", type.getId());
     }
 
     @Override
