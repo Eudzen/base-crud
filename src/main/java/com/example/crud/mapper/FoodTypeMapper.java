@@ -21,4 +21,11 @@ public class FoodTypeMapper {
         );
     }
 
+    public FoodType mapToModel(FoodTypeUpdateDto dto) {
+        return new FoodType()
+            .setId(dto.getId())
+            .setName(dto.getName())
+            .setAbout(dto.getAbout());
+    }
+
 }

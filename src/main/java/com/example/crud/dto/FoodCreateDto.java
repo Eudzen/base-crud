@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class FoodCreateDto {
 
-    @NotNull(message = "Не указан id типа еды")
+    @NotNull(message = "Не указан id типа продукта")
     @Min(value = 1, message = "Id не может быть меньше 1")
     private Long typeId;
 

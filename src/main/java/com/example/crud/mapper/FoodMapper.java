@@ -30,4 +30,16 @@ public class FoodMapper {
         );
     }
 
+    public Food mapToModel(FoodUpdateDto dto, FoodType type) {
+        return new Food()
+            .setId(dto.getId())
+            .setType(type)
+            .setName(dto.getUpdatedInfo().getName())
+            .setProteins(dto.getUpdatedInfo().getProteins())
+            .setFats(dto.getUpdatedInfo().getFats())
+            .setCarbohydrates(dto.getUpdatedInfo().getCarbohydrates())
+            .setCalories(dto.getUpdatedInfo().getCalories())
+            .setIsDeleted(false);
+    }
+
 }
