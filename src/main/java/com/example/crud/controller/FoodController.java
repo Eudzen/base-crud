@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/food")
 @Tag(name = "Продукты", description = "\"Создание, удаление, редактирование " +
-                                      "и получение информации о продукте(-ах) \")\n")
+                                      "и получение информации о продукте(-ах) \"")
 public class FoodController {
 
     private final FoodService foodService;

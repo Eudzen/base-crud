@@ -1,13 +1,11 @@
 package com.example.crud.exception;
 
-import java.util.*;
 import java.util.stream.*;
 
 import com.example.crud.dto.*;
 import io.swagger.v3.oas.annotations.media.*;
 import io.swagger.v3.oas.annotations.responses.*;
 import org.springframework.http.*;
-import org.springframework.validation.*;
 import org.springframework.web.bind.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +14,14 @@ public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
-    @ApiResponse(responseCode = "404", useReturnTypeSchema = true, description = "Объект не найден")
+    @ApiResponse(responseCode = "404",
+        useReturnTypeSchema = true,
+        description = "Объект не найден",
+        content = @Content(examples =
+        @ExampleObject(name = "Пример ошибки",
+            value = "{\"status\": \"NOT_FOUND\",\"timestamp\": \"08-08-2008 08:08:08\","
+                    + "\"message\": \"Объект не был найден.\"}"))
+    )
     public @ResponseBody ApiExceptionDto handleNotFoundException(NotFoundException exception) {
         return new ApiExceptionDto(
             HttpStatus.NOT_FOUND,
@@ -26,7 +31,14 @@ public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(AlreadyExistsException.class)
-    @ApiResponse(responseCode = "409", useReturnTypeSchema = true, description = "Объект уже существует")
+    @ApiResponse(responseCode = "409",
+        useReturnTypeSchema = true,
+        description = "Объект уже существует",
+        content = @Content(examples =
+        @ExampleObject(name = "Пример ошибки",
+            value = "{\"status\": \"CONFLICT\",\"timestamp\": \"08-08-2008 08:08:08\","
+                    + "\"message\": \"Объект уже существует.\"}"))
+    )
     public @ResponseBody ApiExceptionDto handleAlreadyExistsException(AlreadyExistsException exception) {
         return new ApiExceptionDto(
             HttpStatus.CONFLICT,
@@ -36,7 +48,14 @@ public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IncorrectArgumentException.class)
-    @ApiResponse(responseCode = "400", useReturnTypeSchema = true, description = "Ошибки валидации.")
+    @ApiResponse(responseCode = "400",
+        useReturnTypeSchema = true,
+        description = "Ошибки валидации.",
+        content = @Content(examples =
+        @ExampleObject(name = "Пример ошибки",
+            value = "{\"status\": \"BAD_REQUEST\",\"timestamp\": \"08-08-2008 08:08:08\","
+                    + "\"message\": \"Что-либо не прошло валидацию.\"}"))
+    )
     public @ResponseBody ApiExceptionDto handleIncorrectArgumentException(IncorrectArgumentException exception) {
         return new ApiExceptionDto(
             HttpStatus.BAD_REQUEST,
@@ -46,8 +65,16 @@ public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ApiResponse(responseCode = "400", useReturnTypeSchema = true, description = "Ошибки валидации.")
-    @ResponseBody ApiExceptionDto handleMethodArgumentNotValidException(
+    @ApiResponse(responseCode = "400",
+        useReturnTypeSchema = true,
+        description = "Ошибки валидации.",
+        content = @Content(examples =
+        @ExampleObject(name = "Пример ошибки",
+            value = "{\"status\": \"BAD_REQUEST\",\"timestamp\": \"08-08-2008 08:08:08\","
+                    + "\"message\": \"Что-либо не прошло валидацию.\"}"))
+    )
+    @ResponseBody
+    ApiExceptionDto handleMethodArgumentNotValidException(
         MethodArgumentNotValidException exception
     ) {
         var errors = exception.getBindingResult().getFieldErrors();
@@ -58,7 +85,7 @@ public class ControllerExceptionHandler {
 
         return new ApiExceptionDto(
             HttpStatus.BAD_REQUEST,
-            "Exception message: " + exception.getMessage()
+            "Exception message:\n" + wholeMessage
         );
     }
 

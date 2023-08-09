@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/food-type")
 @Tag(name = "Типы продуктов", description = "\"Создание, удаление, редактирование " +
-                                            "и получение информации о типе(-ах) продуктов \")\n")
+                                            "и получение информации о типе(-ах) продуктов \"")
 public class FoodTypeController {
 
     private final FoodTypeService foodTypeService;
@@ -76,7 +76,7 @@ public class FoodTypeController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Удаление типа продуктов.",
+    @Operation(summary = "Удаление типа продуктов",
         description = "Удаление типа продуктов по id. " +
                       "Также производится удаление связанных с типов продуктов."
     )
